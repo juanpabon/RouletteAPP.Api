@@ -10,7 +10,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\RouletteAPP.BLL\RouletteAPP.BLL.csproj" />
+    <ProjectReference Include="..\RouletteAPP.Cache\RouletteAPP.Cache.csproj" />
+    <ProjectReference Include="..\RouletteAPP.Data\RouletteAPP.Data.csproj" />
   </ItemGroup>
 
 

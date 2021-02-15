@@ -5,6 +5,13 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using RouletteAPP.BLL;
+using RouletteAPP.BLL.Abstract;
+using RouletteAPP.Cache;
+using RouletteAPP.Cache.Abstract;
+using RouletteAPP.Data.Helpers;
+using RouletteAPP.Data.Service.Abstract;
+using RouletteAPP.Service.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +32,12 @@ namespace RouletteAPP.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddControllers();
+            services.AddScoped<IRouletteManager, RouletteManager>();
+            services.AddScoped<IRouletteService, RouletteService>();
+            services.AddSingleton<IConfiguration>(Configuration);
+            services.AddScoped<ICacheService, RedisCacheService>();
+            SqlHelper.ConnectionString = Configuration.GetConnectionString("rouletteApp");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
